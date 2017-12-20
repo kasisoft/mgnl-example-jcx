@@ -1,0 +1,6 @@
+<div class="c-linklist" fmx:depends="model.links?has_content">
+  <h2 fmx:depends="model.title?has_content">${model.title}</h2>
+  <div fmx:list="model.links" class="${it.position}">
+    <a href="${it.target}">${it.title}</a>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<fmx:doctype fmx:value="html" />
+<html class="homepage" lang="de">
+  <head>
+    <fmx:cms-init />
+    <link rel="stylesheet" type="text/css" href="${ctx.contextPath!}/.resources/dummy.css"/>
+  </head>
+  <body class="homepage">
+    <main>
+      <fmx:cms-area name="main" />
+    </main>
+  </body>
+</html>

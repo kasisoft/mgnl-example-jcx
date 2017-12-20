@@ -1,0 +1,19 @@
+form:
+  label:                                                   'Article'
+  tabs:
+  
+    # tab main
+    - name:                                                tabMain
+      label:                                               'Main'
+      fields:
+      
+        - name:                                            title
+          class:                                           info.magnolia.ui.form.field.definition.TextFieldDefinition
+          required:                                        false
+          label:                                           'Title'
+  
+actions:
+  commit:
+    class:                                                 info.magnolia.ui.admincentral.dialog.action.SaveDialogActionDefinition
+  cancel:
+    class:                                                 info.magnolia.ui.admincentral.dialog.action.CancelDialogActionDefinition

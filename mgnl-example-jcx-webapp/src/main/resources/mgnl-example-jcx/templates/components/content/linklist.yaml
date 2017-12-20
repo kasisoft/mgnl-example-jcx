@@ -1,0 +1,5 @@
+templateScript:                                            /mgnl-example-jcx/templates/components/content/linklist.fmx
+renderType:                                                freemarker
+title:                                                     'Link List'
+dialog:                                                    mgnl-example-jcx:components/content/linklist
+modelClass:                                                example.components.content.LinkListModel

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>mgnl-example-jcx</groupId>
+    <artifactId>mgnl-example-jcx</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  
+  <artifactId>mgnl-example-jcx-webapp</artifactId>
+  <name>mgnl-example-jcx: webapp</name>
+  <packaging>war</packaging>
+
+  <properties>
+    <version-tomcat>9.0.1</version-tomcat>
+  </properties>
+  
+  <dependencies>
+  
+    <dependency>
+      <groupId>info.magnolia</groupId>
+      <artifactId>magnolia-empty-webapp</artifactId>
+      <type>pom</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>info.magnolia</groupId>
+      <artifactId>magnolia-empty-webapp</artifactId>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>info.magnolia.imaging</groupId>
+      <artifactId>magnolia-imaging</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--
+    This extension is NOT production ready and only being used
+    to keep things simple. 
+    -->
+    <dependency>
+      <groupId>com.kasisoft.mgnl</groupId>
+      <artifactId>ks-mgnl-jcx</artifactId>
+      <version>0.4</version>
+    </dependency>
+
+    <!--
+    This extension brings FMX to Magnolia. Hooray ;-) 
+    -->
+    <dependency>
+      <groupId>com.kasisoft.mgnl</groupId>
+      <artifactId>ks-mgnl-fmx</artifactId>
+      <version>0.6</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>mgnl-example-jcx</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <!-- exclude jars copied "physically" from the webapp overlay - so we only get those resolved by Maven's dependency management -->
+          <dependentWarExcludes>WEB-INF/lib/*.jar</dependentWarExcludes>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.6.5</version>
+        <configuration>
+          <container>
+            <containerId>tomcat9x</containerId>
+            <zipUrlInstaller>
+              <url>https://archive.apache.org/dist/tomcat/tomcat-9/v${version-tomcat}/bin/apache-tomcat-${version-tomcat}.tar.gz</url>
+              <downloadDir>${user.home}/.m2/cargo-downloads</downloadDir>
+              <extractDir>${project.build.directory}/cat</extractDir>
+            </zipUrlInstaller>
+          </container>
+          <configuration>
+            <type>existing</type>
+            <home>${project.build.directory}/cat/apache-tomcat-${version-tomcat}/apache-tomcat-${version-tomcat}</home>
+          </configuration>
+          <deployables>
+            <deployable>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>${project.artifactId}</artifactId>
+              <type>war</type>
+            </deployable>
+          </deployables>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

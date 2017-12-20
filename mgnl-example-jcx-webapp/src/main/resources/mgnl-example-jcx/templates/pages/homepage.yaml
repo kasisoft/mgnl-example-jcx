@@ -1,0 +1,17 @@
+templateScript:                                            /mgnl-example-jcx/templates/pages/page.fmx
+renderType:                                                freemarker
+visible:                                                   true
+dialog:                                                    mgnl-example-jcx:pages/homepage
+title:                                                     'JCX Homepage'
+
+
+areas:
+
+  main:
+    editable:                                              true
+    enabled:                                               true
+    renderType:                                            freemarker
+    title:                                                 'Main'
+    availableComponents:
+      teaser:
+        id:                                                mgnl-example-jcx:components/content/linklist

@@ -1,0 +1,61 @@
+form:
+  label:                                                   'Link List'
+  tabs:
+  
+    # tab main
+    - name:                                                tabMain
+      label:                                               'Main'
+      fields:
+      
+        - name:                                            title
+          class:                                           info.magnolia.ui.form.field.definition.TextFieldDefinition
+          required:                                        false
+          label:                                           'Title'
+
+        - name:                                            links
+          class:                                           info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
+          transformerClass:                                info.magnolia.ui.form.field.transformer.multi.DelegatingMultiValueFieldTransformer
+          label:                                           'Links'
+          field:
+              
+            class:                                         info.magnolia.ui.form.field.definition.CompositeFieldDefinition
+            transformerClass:                              info.magnolia.ui.form.field.transformer.composite.DelegatingCompositeFieldTransformer
+            layout:                                        vertical
+            fields:
+            
+              - name:                                      link
+                class:                                     info.magnolia.ui.form.field.definition.LinkFieldDefinition
+                targetWorkspace:                           website
+                appName:                                   pages
+                label:                                     'Link'
+                identifierToPathConverter:
+                  class:                                   info.magnolia.ui.form.field.converter.BaseIdentifierToPathConverter
+
+              - name:                                      title
+                class:                                     info.magnolia.ui.form.field.definition.TextFieldDefinition
+                label:                                     'Title'
+                
+              - name:                                      position
+                class:                                     info.magnolia.ui.form.field.definition.SelectFieldDefinition
+                converterClass:                            example.pojo.HorizontalPosition.HorizontalPositionAdapter
+                label:                                     'Position'
+                options:
+                
+                  - name:                                  left
+                    value:                                 'left'
+                    label:                                 'left'
+                    
+                  - name:                                  center
+                    value:                                 'center'
+                    label:                                 'center'
+                    selected:                              true
+                            
+                  - name:                                  right
+                    value:                                 'right'
+                    label:                                 'right'
+  
+actions:
+  commit:
+    class:                                                 info.magnolia.ui.admincentral.dialog.action.SaveDialogActionDefinition
+  cancel:
+    class:                                                 info.magnolia.ui.admincentral.dialog.action.CancelDialogActionDefinition
