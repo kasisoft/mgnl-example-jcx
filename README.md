@@ -9,7 +9,7 @@ Maven
 
 You can run immediately launch the webapp using the following command line:
 
-    (mgnl-example-jcx-webapp)$ mvn clean install org.codehaus.cargo-maven2-plugin:run
+    (mgnl-example-jcx-webapp)$ mvn clean install org.codehaus.cargo:cargo-maven2-plugin:run
 
 The webapp can be accessed using the following url:
 
